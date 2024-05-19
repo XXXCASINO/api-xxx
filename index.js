@@ -15,7 +15,7 @@ const pool = mysql.createPool({
 
 // Função para consultar dados
 function getData(callback) {
-    pool.query('SELECT * FROM databasexxx.users', function (err, results, fields) {
+    pool.query('SELECT * FROM freedb_xxxdatabase.users', function (err, results, fields) {
         if (err) return callback(err);
         callback(null, results);
     });
