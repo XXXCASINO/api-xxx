@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require('mysql2');
 const app = express();
+const cors = require('cors')
 
 // Configuração da conexão ao banco de dados
 const pool = mysql.createPool({
@@ -12,6 +13,8 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     queueLimit: 0
 });
+
+app.use(cors)
 
 // Função para consultar dados
 function getData(callback) {
