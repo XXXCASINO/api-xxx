@@ -4,10 +4,10 @@ const app = express();
 
 // Configuração da conexão ao banco de dados
 const pool = mysql.createPool({
-    host: "database-1.c7i0emwesv74.us-east-2.rds.amazonaws.com",
-    user: "admin",
-    database: "databasexxx",
-    password: "Xxx202405",
+    host: "sql.freedb.tech",
+    user: "freedb_gambling",
+    database: "freedb_xxxdatabase",
+    password: "w%gSsa35VC46VJV",
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
