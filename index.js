@@ -14,7 +14,7 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
-app.use(cors)
+app.use(cors())
 
 // Função para consultar dados
 function getData(callback) {
