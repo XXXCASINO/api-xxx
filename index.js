@@ -35,6 +35,10 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/teste', (req, res) => {
+    res.send('Test OK')
+});
+
 app.listen(9001, ()=>{
     console.log('Running')
 })
