@@ -11,7 +11,7 @@ login.get("/login", async function (req, res) {
     }
 });
 
-book.post("/logout", async function (req, res) {
+login.post("/logout", async function (req, res) {
      
     const { status, statusName } = req.body;
      //do something
