@@ -1,7 +1,8 @@
-const express = require("express");
-const mysql = require('mysql2');
-const app = express();
+const express = require("express")
+const mysql = require('mysql2')
+const app = express()
 const cors = require('cors')
+const payment = require('./controller/payment.js')
 
 // Configuração da conexão ao banco de dados
 const pool = mysql.createPool({
@@ -35,9 +36,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/teste', (req, res) => {
-    res.send('Test OK')
-});
+app.get('/teste', payment());
 
 app.listen(9001, ()=>{
     console.log('Running')
