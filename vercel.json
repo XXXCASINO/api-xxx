@@ -1,12 +1,10 @@
 {
     "version": 2,
-    "functions": {
-      "api/**/*.js": {
-        "runtime": "nodejs14.x"
-      }
-    },
+    "builds": [
+      { "src": "api/**/*.js", "use": "@vercel/node" }
+    ],
     "routes": [
-      { "src": "/api/route1", "dest": "/api/route1.js", "methods": ["GET", "POST"] },
-      { "src": "/api/route2", "dest": "/api/route2.js", "methods": ["GET"] }
-    ]
+        { "src": "/api/route1", "dest": "/api/route1.js", "methods": ["GET", "POST"] },
+        { "src": "/api/route2", "dest": "/api/route2.js", "methods": ["GET"] }
+      ]
   }
