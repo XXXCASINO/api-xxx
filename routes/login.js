@@ -14,6 +14,7 @@ const pool = mysql.createPool({
 
 login.get("/login", async function (req, res) {
     const { status } = req.query;
+    console.log("Login request received with status:", status);
     if (status) {
        res.status(200).send({ loginStatus: "Theres some status", status: status });
     } else {
@@ -23,18 +24,22 @@ login.get("/login", async function (req, res) {
 
 login.post("/logout", async function (req, res) {
     const { status, statusName } = req.body;
-    //do something
-    res.send("Something status");
+    console.log("Logout request received with status and statusName:", status, statusName);
+    // Implementa a lógica de logout aqui
+    res.send("Logout completed with status: " + status);
 });
 
 // Rota para adicionar um novo usuário
 login.post("/register", function (req, res) {
     const { name, email, password } = req.body;
+    console.log("Register request received with:", name, email);
     const sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
     pool.query(sql, [name, email, password], function (err, result) {
         if (err) {
+            console.error("Error registering user:", err.message);
             res.status(500).send('Failed to register user: ' + err.message);
         } else {
+            console.log("User registered with ID:", result.insertId);
             res.send({ userId: result.insertId, message: "User successfully registered" });
         }
     });
