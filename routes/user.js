@@ -19,7 +19,7 @@ user.post("/user/:action", async function (req, res) {
     switch (action) {
         case 'login':
             const hashedPasswordLogin = await bcrypt.hash(password, 10);
-            pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, hashedPasswordLogin], (err, results) => {
+            pool.query('SELECT * FROM freedb_xxxdatabase.users WHERE username = ? AND password = ?', [username, hashedPasswordLogin], (err, results) => {
                 if (results.length > 0) {
                     console.log("Login request received");
                     res.send({ message: "Login successful", user: results[0] });
