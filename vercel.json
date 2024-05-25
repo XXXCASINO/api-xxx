@@ -1,12 +1,24 @@
 {
     "version": 2,
     "builds": [
-      { "src": "api/user.js", "use": "@vercel/node" },
-      { "src": "api/payment.js", "use": "@vercel/node" }
+      {
+        "src": "api/user.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "api/payment.js",
+        "use": "@vercel/node"
+      }
     ],
     "routes": [
-      { "src": "/api/user", "dest": "/api/user.js" },
-      { "src": "/api/payment", "dest": "/api/payment.js" }
+      {
+        "src": "/api/user/(login|logout|register)",
+        "dest": "/api/user.js"
+      },
+      {
+        "src": "/api/payment",
+        "dest": "/api/payment.js"
+      }
     ]
   }
   
