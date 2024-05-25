@@ -1,6 +1,6 @@
 const user = require('express').Router();
 const mysql = require('mysql2');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 
 // Conexão direta ao banco de dados
 const connection = mysql.createConnection({
@@ -24,8 +24,8 @@ user.post("/user/:action", async function (req, res) {
 
     switch (action) {
         case 'login':
-            const hashedPasswordLogin = await bcrypt.hash(password, 10);
-            connection.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, hashedPasswordLogin], (err, results) => {
+            //const hashedPasswordLogin = await bcrypt.hash(password, 10);
+            connection.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, results) => {
                 if (results.length > 0) {
                     console.log("Login request received");
                     res.send({ message: "Login successful", user: results[0] });
@@ -39,8 +39,8 @@ user.post("/user/:action", async function (req, res) {
             res.send({ message: "Logout successful" });
             break;
         case 'register':
-            const hashedPassword = await bcrypt.hash(password, 10);
-            connection.query('INSERT INTO users (username, user, password, email) VALUES (?, ?, ?, ?)', [username, name, hashedPassword, email], (err, result) => {
+            //const hashedPassword = await bcrypt.hash(password, 10);
+            connection.query('INSERT INTO users (username, user, password, email) VALUES (?, ?, ?, ?)', [username, name, password, email], (err, result) => {
                 if (err) {
                     res.status(500).send('Error registering new user: ' + err.message);
                 } else {
@@ -50,8 +50,8 @@ user.post("/user/:action", async function (req, res) {
             });
             break;
         case 'update':
-            const newHashedPassword = await bcrypt.hash(password, 10);
-            connection.query('UPDATE users SET password = ?, email = ? WHERE username = ?', [newHashedPassword, email, username], (err, result) => {
+            //const newHashedPassword = await bcrypt.hash(password, 10);
+            connection.query('UPDATE users SET password = ?, email = ? WHERE username = ?', [password, email, username], (err, result) => {
                 if (err) {
                     res.status(500).send('Error updating user: ' + err.message);
                 } else {
