@@ -1,11 +1,11 @@
 {
     "version": 2,
     "builds": [
-      { "src": "api/login.js", "use": "@vercel/node" },
+      { "src": "api/user.js", "use": "@vercel/node" },
       { "src": "api/payment.js", "use": "@vercel/node" }
     ],
     "routes": [
-      { "src": "/api/login", "dest": "/api/login.js" },
+      { "src": "/api/user", "dest": "/api/user.js" },
       { "src": "/api/payment", "dest": "/api/payment.js" }
     ]
   }
