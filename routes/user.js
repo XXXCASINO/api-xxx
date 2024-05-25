@@ -16,7 +16,7 @@ user.post("/user/:action", async function (req, res) {
         case 'register':
             console.log("Register request received with:", name, email);
             // Aqui entra a lógica de inserção no banco de dados
-            res.send({ message: "User successfully registered", userId: "exampleId" });
+            res.send({ message: "User successfully registered", userId: `exampleId for ${name}, ${email}` });
             break;
         default:
             res.status(400).send("Invalid action");
