@@ -12,7 +12,7 @@
     ],
     "routes": [
       {
-        "src": "/api/user",
+        "src": "/api/user/(login|logout|register)",
         "dest": "/api/user.js"
       },
       {

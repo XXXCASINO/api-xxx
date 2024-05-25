@@ -1,7 +1,8 @@
 const user = require('express').Router();
 
-user.post("/user", async function (req, res) {
-    const { action, name, email, password } = req.query;
+user.post("/user/:action", async function (req, res) {
+    const { action } = req.params;
+    const { name, email, password } = req.body;
     
     switch (action) {
         case 'login':
