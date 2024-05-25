@@ -14,12 +14,12 @@ const pool = mysql.createPool({
 
 user.post("/user/:action", async function (req, res) {
     const { action } = req.params;
-    const { name, email, password } = req.body;
+    const { username, name, email, password } = req.body;
 
     switch (action) {
         case 'login':
             const hashedPasswordLogin = await bcrypt.hash(password, 10);
-            pool.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, hashedPasswordLogin], (err, results) => {
+            pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, hashedPasswordLogin], (err, results) => {
                 if (results.length > 0) {
                     console.log("Login request received");
                     res.send({ message: "Login successful", user: results[0] });
@@ -34,7 +34,7 @@ user.post("/user/:action", async function (req, res) {
             break;
         case 'register':
             const hashedPassword = await bcrypt.hash(password, 10);
-            pool.query('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', [name, hashedPassword, email], (err, result) => {
+            pool.query('INSERT INTO users (username, user, password, email) VALUES (?, ?, ?)', [username, name, hashedPassword, email], (err, result) => {
                 if (err) {
                     res.status(500).send('Error registering new user: ' + err.message);
                 } else {
